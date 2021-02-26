@@ -2,9 +2,13 @@
 import string
 from random import *
 
-print(string.punctuation)
-print(string.ascii_letters)
-print(string.digits)
+chars = string.punctuation + string.ascii_letters + string.digits
 
-s = "".join(choice(string.ascii_letters+string.digits+string.punctuation) for x in range(randint(5, 15)))
-print(s)
+
+def generate_password(length=5):
+    return "".join(choice(chars) for x in range(randint(5, length)))
+
+
+p = generate_password(5)
+print(len(p), p)
+
