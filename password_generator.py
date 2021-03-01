@@ -12,10 +12,16 @@ class PasswordGenerator:
 
     @staticmethod
     def __generate_password(length=5):
-        return "".join(choice(PasswordGenerator.__chars) for x in range(randint(5, length)))
+        """generates a random password of the given length. Length must be 5 or greater"""
+
+        try:
+            if int(length) >= 5:
+                return "".join(choice(PasswordGenerator.__chars) for x in range(randint(5, length)))
+        except ValueError:
+            return PasswordGenerator.__generate_password(5)
 
     @staticmethod
-    def generate_password(length=5):
+    def generate_password(length=5, from_chars=None):
         return PasswordGenerator.__generate_password(length)
 
 
