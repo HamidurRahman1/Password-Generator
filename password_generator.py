@@ -3,7 +3,7 @@ import string
 from random import *
 
 s = "abcdeadgc"
-print(set(i for i in s if s.count(i) > 1))
+# print(set(i for i in s if s.count(i) > 1))
 
 
 class PasswordGenerator:
@@ -15,16 +15,20 @@ class PasswordGenerator:
         """generates a random password of the given length. Length must be 5 or greater"""
 
         try:
-            if int(length) >= 5:
+            length = int(length)
+            if length >= 5:
                 return "".join(choice(PasswordGenerator.__chars) for x in range(randint(5, length)))
         except ValueError:
-            return PasswordGenerator.__generate_password(5)
+            raise ValueError("Expected integer but given {} for `length`.".format(type(length)))
 
     @staticmethod
     def generate_password(length=5, from_chars=None):
         return PasswordGenerator.__generate_password(length)
 
 
-p = PasswordGenerator.generate_password(5)
-print(p)
+try:
+    p = PasswordGenerator.generate_password("7")
+    print(p)
+except Exception as e:
+    print(e.args)
 
