@@ -25,17 +25,19 @@ class PasswordGenerator:
 
         try:
             length = int(length)
-            if isinstance(source, str):
-                if unique_source:
-                    source = set(source)
-                    return PasswordGenerator.__generate_password(length, source)
-            return PasswordGenerator.__generate_password(length, source)
+            if isinstance(source, str) and unique_source:
+                source = str(set(source))
+                return PasswordGenerator.__generate_password(length, source)
+            elif isinstance(source, str) and not unique_source:
+                return PasswordGenerator.__generate_password(length, source)
+            elif isinstance(source, set):
+                return PasswordGenerator.__generate_password(length, str(source))
         except ValueError:
             raise ValueError("Expected integer but given {} for `length`".format(type(length)))
 
 
 try:
-    p = PasswordGenerator.generate_password(7, "asDwK109?@")
+    p = PasswordGenerator.generate_password(7, {"d"})
     print(p)
 except Exception as e:
     print(e.args)
