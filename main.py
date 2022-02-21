@@ -1,12 +1,3 @@
-"""
-Hamidur Rahman
-Class: CS 521 - Spring 1
-Date: 02/28/2022
-Final Project: Random Password Generator+ (RPG+)
-Description: Main module of the project consists of various functions
-to perform different actions and of course runs the RPG+ program. This module
-depends on the random_generator module to be a functional module.
-"""
 
 import os
 from random_password_generator import PasswordGenerator as Pg
@@ -21,7 +12,6 @@ TAG_MIN_LENGTH = 2
 TAG_MAX_LENGTH = 15
 
 
-# usage of output file
 def write_to_file(tag, hash_value):
     """Writes the given parameters to password storage text file.
 
@@ -38,7 +28,6 @@ def write_to_file(tag, hash_value):
     file_obj.close()
 
 
-# user defined method, accepts parameters and returns value
 def get_user_input(template):
     """Asks users for an input while displaying the given parameter template.
 
@@ -290,7 +279,6 @@ def main_menu():
 
         user_input = get_user_input("Please enter 1/2/3/4: ")
 
-        # try block with else condition
         try:
             user_input = int(user_input)
             if user_input == 1:
